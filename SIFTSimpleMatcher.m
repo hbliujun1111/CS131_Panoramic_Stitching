@@ -31,7 +31,22 @@ function match = SIFTSimpleMatcher(descriptor1, descriptor2, thresh)
 %                                YOUR CODE HERE:                               %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+   [m,n] = size(descriptor1);
+   [dm,dn] = size(descriptor2);
+   j = 1
+   for i = 1:m
+       row = descriptor1(i,:);
+       matrix = repmat(row,dm,1);
+       distance = sqrt(sum((matrix - descriptor2).^2,2));
+       [value,index] = sort(distance);
+       if(value(1) <= thresh*value(2))
+           match(j,1) = i;
+           match(j,2) = index(1);
+           j = j +1;
+       end
+           
+   end
+   
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
