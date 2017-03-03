@@ -4,6 +4,10 @@ clc; close all; clc;
 %% Load image
 img1 = imread('./data/uttower1.jpg');
 img2 = imread('./data/uttower2.jpg');
+figure()
+imshow(img1)
+figure()
+imshow(img2)
 
 %% Feature detection
 [feature1, pyr1, imp1] = detect_features(img1);
@@ -30,4 +34,5 @@ H = RANSACFit(pointsInImage1, pointsInImage2, M, maxIter, seedSetSize, maxInlier
 saveFileName = 'uttower_pano.jpg';
 PairStitch(img1, img2, H, saveFileName);
 disp(['Panorama was saved as uttower_pano.jpg' saveFileName]);
+figure()
 imshow(imread(saveFileName));

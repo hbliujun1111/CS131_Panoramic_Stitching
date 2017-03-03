@@ -177,18 +177,11 @@ function T = makeTransformToReferenceFrame(i_To_iPlusOne_Transform, currentFrame
 if currentFrameIndex < refFrameIndex
     T1 = i_To_iPlusOne_Transform{currentFrameIndex};
     for i = currentFrameIndex+1:refFrameIndex-1
-        T1 = T1*i_To_iPlusOne_Transform{i};
+        T1 = T1*i_To_iPlusOne_Transform[i];
     end
     
     T = T1;
-else if currentFrameIndex > refFrameIndex
-        T1 = pinv(i_To_iPlusOne_Transform{refFrameIndex});
-        for i = refFrameIndex+1:currentFrameIndex-1
-           T1 = T1*pinv(i_To_iPlusOne_Transform{i});
-        end
-    
-        T = T1;
-    end
+el
 end
 
 
